@@ -39,11 +39,14 @@ function UpdateOneValue() {
         <div>
           <div key={index}>{post.title}</div>
           <div>
-            {post.likes.length}{' '}
             {posts[index].likes.findIndex((like) => like.id === 2) !== -1 ? (
-              <button onClick={() => removeLike(post.id)}>Unlike</button>
+              <button onClick={() => removeLike(post.id)}>
+                Unlike {post.likes.length}
+              </button>
             ) : (
-              <button onClick={() => addLike(post.id)}>Like</button>
+              <button onClick={() => addLike(post.id)}>
+                Like {post.likes.length}
+              </button>
             )}
           </div>
         </div>
