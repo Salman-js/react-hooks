@@ -20,6 +20,19 @@ function UpdateOneValue() {
       setPosts(updatedPosts);
     }
   }
+  function removeLike(id) {
+    let updatedPosts = [...posts];
+    const index = updatedPosts.findIndex((post) => post.id === id);
+    if (index !== -1) {
+      updatedPosts[index] = {
+        ...updatedPosts[index],
+        likes: updatedPosts[index].likes.filter((object) => {
+          return object.id !== 2;
+        }),
+      };
+      setPosts(updatedPosts);
+    }
+  }
   return (
     <div>
       {posts.map((post, index) => (
@@ -27,7 +40,11 @@ function UpdateOneValue() {
           <div key={index}>{post.title}</div>
           <div>
             {post.likes.length}{' '}
-            <button onClick={() => addLike(post.id)}>like</button>
+            {posts[index].likes.findIndex((like) => like.id === 2) !== -1 ? (
+              <button onClick={() => removeLike(post.id)}>Unlike</button>
+            ) : (
+              <button onClick={() => addLike(post.id)}>Like</button>
+            )}
           </div>
         </div>
       ))}
